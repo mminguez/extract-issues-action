@@ -5,6 +5,7 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Logger } from '@dolittle/github-actions.shared.logging';
 import { PullRequestsParser } from './PullRequestsParser';
+import { PullsList } from './PullsList';
 
 const logger = new Logger();
 
@@ -17,9 +18,9 @@ export async function run() {
         const repo = repoInfo[0];
         const owner = repoInfo[1];
         const pulls = octokit.pulls.list({repo, owner,});
-        const listOfPulls = await PullRequestsParser.parsePRList(pulls);
+        const listOfPulls = (<any>PullRequestsParser).parsePRList(pulls);
         if (listOfPulls === undefined) {
-            logger.debug('No establisher found for context');
+            logger.debug('No pull request found');
             logger.debug(JSON.stringify(pulls, undefined, 2));
         }
 
