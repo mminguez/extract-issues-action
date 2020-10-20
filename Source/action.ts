@@ -7,6 +7,7 @@ import { Logger } from '@dolittle/github-actions.shared.logging';
 import { PullRequestsParser } from './PullRequestsParser';
 import { PullsList } from './PullsList';
 import { ExtractIssues } from './Issues/ExtractIssues';
+import { IssuesList } from './Issues/IssuesList';
 
 const logger = new Logger();
 
@@ -25,7 +26,7 @@ export async function run() {
             logger.debug(JSON.stringify(pulls, undefined, 2));
         }
         else {
-            ExtractIssues.findIssuesLink(listOfPulls);
+            const prWithIssuesList:IssuesList = (<any>ExtractIssues).findIssuesLink(<PullsList>listOfPulls);
         }
 
     } catch (error) {
