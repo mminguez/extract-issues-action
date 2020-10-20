@@ -6,6 +6,7 @@ import * as github from '@actions/github';
 import { Logger } from '@dolittle/github-actions.shared.logging';
 import { PullRequestsParser } from './PullRequestsParser';
 import { PullsList } from './PullsList';
+import { ExtractIssues } from './Issues/ExtractIssues';
 
 const logger = new Logger();
 
@@ -22,6 +23,9 @@ export async function run() {
         if (listOfPulls === undefined) {
             logger.debug('No pull request found');
             logger.debug(JSON.stringify(pulls, undefined, 2));
+        }
+        else {
+            ExtractIssues.findIssuesLink(listOfPulls);
         }
 
     } catch (error) {

@@ -15,7 +15,7 @@ export interface IPullRequestsParser {
     /**
      * Establishes a {BuildContext} from the given github {Context}.
      * @param {Promise<OctokitResponse<PullsListResponseData>>} pulls The raw pull requests list.
-     * @returns {PullsList} A {Promise} that, when resolved, returns the {PullsList}.
+     * @returns {PullsList} returns the {PullsList}.
      */
     parsePRList(pulls: any): PullsList | undefined;
 }
