@@ -1,13 +1,18 @@
 name: 'The Action Name'
 description: 'The action description'
 inputs:
-  someInput:
-    description: Description of the input
+  token:
+    description: Token to use for Github API
     required: true
+    default: ${{ github.token }}
+  repoInfo:
+    description: Owner and name of current repository
+    required: true
+    default: ${{ GITHUB_REPOSITORY }}
 
 outputs:
   output:
-    description: Description of the output
+    description: Not yet
   
 runs:
   using: 'node12'

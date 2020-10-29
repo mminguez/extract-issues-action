@@ -1,7 +1,6 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { PullsList } from '../PullsList';
 import { IExtractIssues } from './IExtractIssues';
 import { PrSummary } from './PrSummary';
 import { IssuesList } from './IssuesList';
@@ -19,7 +18,7 @@ export class ExtractIssues implements IExtractIssues {
     constructor(){}
     
 
-    findIssuesLink(listOfPulls: PullsList){
+    findIssuesLink(listOfPulls: string[]){
         const prWithSummary:PrSummary[] = this.extractSummary(listOfPulls);
 
         let nr = 0;
@@ -46,10 +45,10 @@ export class ExtractIssues implements IExtractIssues {
      * @param listOfPulls 
      */
 
-    private extractSummary(listOfPulls: PullsList) {
+    private extractSummary(listOfPulls: string[]) {
         const prWithSummary:PrSummary[] = [];
         let nr = 0;
-        for (let i of listOfPulls.arrPRList) {
+        for (let i of listOfPulls) {
             const lines = i.split('\n');
             for (let j of i) {
                 prWithSummary[nr].pullRequestNum = nr;
